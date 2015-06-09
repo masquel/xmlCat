@@ -10,7 +10,7 @@ class Profiler(object):
         self._startTime = time.time()
          
     def __exit__(self, type, value, traceback):
-        print("Время затраченное на выполнение: {:.3f} sec".format(time.time() - self._startTime))
+        print("Время затраченное на выполнение: {:.20f} sec".format(time.time() - self._startTime))
 
 def main(argv):
     with Profiler() as p:
@@ -21,8 +21,8 @@ def main(argv):
         outputfile = ''
         tree = ''
         root = ''
-        tree_out = ''
-        node_string = ''
+        tree_out = ET
+        element_string = ''
         encoding = 'UTF-8'
         count = 0
 
@@ -72,27 +72,25 @@ def main(argv):
             root = tree.getroot()
 
             if q:
+                founded = root.findall(query_to_find)
                 if r:
-                    for node in root.findall(query_to_find):
-                        node.text = replace_value
+                    for element in founded:
+                        element.text = replace_value
                         count += 1
                     print("Изменено", count, "узлов.")
                 else:
-                    for node in root.findall(query_to_find):
-                        node_string = ET.tostring(node)
-                        tree_out += node_string
-                        count += 1
-                    print("Найдено", count, "узлов.")  
-                    tree_out = ET.ElementTree(ET.fromstring(tree_out))       
+                    #tree_out.Element.append()
+                    #print(ET.ElementTree(founded))
+                    print("Найдено", len(founded), "узлов")       
 
             elif d:
                 if q:
                     root = tree_out.getroot()
-                    for node in root.findall(query_to_delete):
-                        root.remove(node)
+                    for element in root.findall(query_to_find):
+                        root.remove(element)
                 else:
-                    for node in root.findall(query_to_delete):
-                        root.remove(node)
+                    for element in root.findall(query_to_delete):
+                        root.remove(element)
                         count += 1
                     print("Удалено", count, "узлов.")    
 

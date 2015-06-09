@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='utf-8' ?>
+<?xml version='1.0' encoding='utf-8'?>
 <osm>
     <node id="223619" visible="true" />
     <node id="223610" visible="true" />
-    <node id="223601" visible="false" />
-    <node id="233469" visible="false" />
+    <node id="223601" visible="false">&lt;tag/&gt;</node>
+    <node id="233469" visible="false">&lt;tag/&gt;</node>
     <node id="308167" visible="true">
         <tag k="highway" v="traffic_signals" />
     </node>

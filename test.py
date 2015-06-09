@@ -2,6 +2,7 @@ import sys
 import getopt
 import xml.etree
 import xml.etree.ElementTree as ET
+import xml.dom.minidom
 
 
 def main(argv):
@@ -12,12 +13,11 @@ def main(argv):
     outputfile = ''
     tree = ''
     root = ''
-    tree_out = ''
+    tree_out = ET.Element
     encoding = 'UTF-8'
     count = 0
-
     i = q = r = d = o = False
-
+    xml_string = ''
     help_answer = 'Usage: xmlcat.py -i <file> -q <XPath> -r <value> -d <XPath> -o <outputfile> -e <encoding>'
 
     try:
@@ -46,11 +46,11 @@ def main(argv):
     if i:
         tree = ET.parse(inputfile)
         root = tree.getroot()
-        for node in root.findall('./node[@id="21729962"]'):
-            tree_out = ET.tostring(node)
-            count += 1
-        print("Найдено", count, "узлов")
-        tree_out = ET.ElementTree(ET.fromstring(tree_out))
+        founded = root.findall('.')
+        print(founded)
+        tree_out = ET.ElementTree(founded)
+        print("Найдено", len(founded), "узлов")
+        
         #print(tree_out)
         tree_out.write('out.xml', encoding, True)    
     else:
